@@ -1,0 +1,36 @@
+version: '3'
+services:
+  docker-mysql:
+    image: mysql:5.7
+    container_name: filesharing-db
+    ports:
+      - 33060:3306
+    environment:
+      MYSQL_DATABASE: filesharing
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret
+      MYSQL_USER: bocmah
+    networks:
+      - filesharing
+    volumes:
+      - dbdata:/var/lib/mysql/
+
+  app:
+    build:
+      context: .
+      dockerfile: ./.docker/app/Dockerfile
+    image: filesharing
+    container_name: filesharing-app
+    depends_on:
+      - docker-mysql
+    ports:
+      - 8080:8080
+    networks:
+      - filesharing
+
+networks:
+  filesharing:
+    driver: bridge
+volumes:
+  dbdata:
+    driver: local
