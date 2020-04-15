@@ -21,7 +21,8 @@ class RegistrationForm {
         $.ajax({
             type: "POST",
             url: "/register",
-            data: formData,
+            contentType: "application/json",
+            data: JSON.stringify(formData),
             dataType: "json",
             beforeSend: self.clearErrors.bind(self),
             encode: true,
@@ -39,7 +40,7 @@ class RegistrationForm {
             "username": $("#username").val(),
             "email": $("#email").val(),
             "password": $("#password").val(),
-            "password_confirmation": $("#password_confirmation").val(),
+            "passwordConfirm": $("#password_confirmation").val(),
         }
     }
 

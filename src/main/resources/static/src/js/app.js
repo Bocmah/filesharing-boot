@@ -6,6 +6,16 @@ import DropBoxOverlay from "./modules/DropBoxOverlay";
 import DetailsTable from "./modules/DetailsTable";
 import CommentForm from "./modules/CommentForm";
 
+
+const csrfToken = $("meta[name='_csrf']").attr("content");
+const csrfHeader = $("meta[name='_csrf_header']").attr("content");
+
+$.ajaxSetup({
+    headers: {
+        [csrfHeader]: csrfToken
+    }
+});
+
 const registrationForm = new RegistrationForm();
 const loginForm = new LoginForm();
 
