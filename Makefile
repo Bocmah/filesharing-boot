@@ -23,3 +23,6 @@ build:
 # Frontend-related tasks
 build-frontend:
 	npm run build
+
+rebuild-all:
+	$(docker_compose_bin) down && mvn clean package && $(docker_compose_bin) up -d --build

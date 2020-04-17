@@ -30,8 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/", "register").permitAll()
                 .and()
-                    .logout()
-                    .permitAll();
+                    .formLogin()
+                        .loginPage("/")
+                        .permitAll()
+                .and()
+                    .csrf().disable();
     }
 
     @Bean

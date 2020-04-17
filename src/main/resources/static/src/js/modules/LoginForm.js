@@ -21,7 +21,8 @@ class LoginForm {
         $.ajax({
             type: "POST",
             url: "/login",
-            data: formData,
+            data: JSON.stringify(formData),
+            contentType: "application/json",
             dataType: "json",
             beforeSend: self.clearErrors.bind(self),
             encode: true
@@ -57,7 +58,7 @@ class LoginForm {
 
     grabFormData() {
         return {
-            "email": $("#loginEmail").val(),
+            "username": $("#loginUsername").val(),
             "password": $("#loginPassword").val(),
         }
     }
