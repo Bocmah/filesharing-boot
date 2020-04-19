@@ -24,6 +24,9 @@ public class User {
     @ManyToMany
     private Set<Role> roles;
 
+    @OneToMany(mappedBy = "user")
+    private Set<File> files;
+
     @Column(name="avatar_name")
     private String avatarName;
 
@@ -85,5 +88,9 @@ public class User {
 
     public void setDefaultAvatar() {
         this.avatarName = "default.png";
+    }
+
+    public Set<File> getFiles() {
+        return files;
     }
 }

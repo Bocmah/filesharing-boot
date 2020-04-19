@@ -28,13 +28,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "register").permitAll()
+                    .antMatchers("/", "register", "upload").permitAll()
                 .and()
                     .formLogin()
                         .loginPage("/")
-                        .permitAll()
-                .and()
-                    .csrf().disable();
+                        .permitAll();
     }
 
     @Bean
